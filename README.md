@@ -37,7 +37,7 @@ During major disasters, insurance companies face critical challenges in monitori
 
 ## Architecture
 
-![Data Pipeline Architecture](<architecture diagram.png>)
+![Data Pipeline Architecture](./img/Architecture_diagram.png)
 ---
 
 ## Data Flow
