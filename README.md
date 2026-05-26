@@ -8,7 +8,6 @@ Built for **SafeGuard Insurance** — a simulated insurance company — to demon
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-F2C811?logo=powerbi&logoColor=black)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
@@ -268,11 +267,14 @@ Total claim amounts by incident type, geographic map of claims by state with inc
 
 **API data Ingestion**  ![image here](./img/FEMA_API_data_ingested_into_etl_pipeline.png)
 
+
+**Realistic Test Data** — The claims generator uses weighted distributions for claim types, statuses, and priorities, with amount ranges calibrated to real-world insurance patterns.
+
+**Generated Claim Data**  ![image here](./img/Insurance_claim_generated.png)
+
 **Fault Tolerance** — API calls include retry logic with exponential backoff (2s, 4s, 8s). Failed pipeline runs are logged with error details for debugging.
 
 **Idempotent Transformations** — Staging and curated layers use UPSERT (ON CONFLICT DO UPDATE) operations, making re-runs safe without data duplication.
-
-**Claims Data in Staging**  ![image here](./img/Claims_table_in_staging.png)
 
 **Disaster Data in Staging**  ![image here](./img/Disaster_table_in_staging.png)
 
@@ -281,10 +283,6 @@ Total claim amounts by incident type, geographic map of claims by state with inc
 **Pipeline Orchestration**  ![image here](./img/Pipeline_Orchestration.png)
 
 **Configurable Thresholds** — SLA targets, batch sizes, page limits, and claims-per-disaster ranges are centralized in `config/settings.py`.
-
-**Realistic Test Data** — The claims generator uses weighted distributions for claim types, statuses, and priorities, with amount ranges calibrated to real-world insurance patterns.
-
-**Generated Claim Data**  ![image here](./img/Insurance_claim_generated.png)
 
 ---
 
