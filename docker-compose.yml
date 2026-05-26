@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dra_postgres
+    environment:
+      POSTGRES_DB: disaster_response
+      POSTGRES_USER: dra_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dra_secure_2024}
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dra_admin -d disaster_response"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+#   etl:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     container_name: dra_etl
+#     depends_on:
+#       postgres:
+#         condition: service_healthy
+#     environment:
+#       DATABASE_URL: postgresql://dra_admin:${POSTGRES_PASSWORD:-dra_secure_2024}@postgres:5432/disaster_response
+#       FEMA_API_BASE_URL: https://www.fema.gov/api/open/v2
+#       LOG_LEVEL: INFO
+#     volumes:
+#       - ./etl:/app/etl
+#       - ./utils:/app/utils
+#       - ./config:/app/config
+#       - ./data:/app/data
+#       - ./logs:/app/logs
+
+volumes:
+  pgdata:
